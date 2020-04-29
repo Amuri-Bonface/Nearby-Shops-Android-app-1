@@ -19,7 +19,8 @@
         android:roundIcon="@drawable/custom_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
 
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
