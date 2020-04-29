@@ -3,7 +3,8 @@
     <string name="app_name">Nearby Shops</string>
 
     <drawable name="custom_icon">@mipmap/blue_icon</drawable>
-    <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>
+   <!-- <string name="custom_url">http://markets-blr.nearbyshops.org:5021</string>-->
+    <string name="custom_url"> http://35.184.229.188:8090</string>
 
     <bool name="multi_market_enabled">false</bool>
     <bool name="only_fooddelivery_mode">false</bool>
