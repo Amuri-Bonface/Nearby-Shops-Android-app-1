@@ -1,5 +1,6 @@
 package org.nearbyshops.enduserappnew.Checkout;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
@@ -17,6 +20,7 @@ import okhttp3.ResponseBody;
 
 import org.nearbyshops.enduserappnew.API.CartStatsService;
 import org.nearbyshops.enduserappnew.API.OrderService;
+import org.nearbyshops.enduserappnew.Checkout.mobile_pay.Mobile_pay;
 import org.nearbyshops.enduserappnew.Model.ModelCartOrder.Order;
 import org.nearbyshops.enduserappnew.Model.ModelStats.CartStats;
 import org.nearbyshops.enduserappnew.Model.ModelStats.DeliveryAddress;
@@ -470,14 +474,44 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
 
                 if(response.code() == 201)
                 {
-                    showToastMessage("Successful !");
+                    //alert dialog box
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+
+                    builder.setTitle("Pay Via Mpesa")
+                            .setMessage("Confirm if you are paying via Mpesa")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    Intent i = new Intent(PlaceOrderActivity.this, Mobile_pay.class);
+                                    i.putExtra("Phone", phoneNumber.getText().toString());
+                                    i.putExtra("Amount", String.valueOf(cartStats.getCart_Total()));
+
+                                    //i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(i);
 
 
-                    Intent i = new Intent(PlaceOrderActivity.this, Home.class);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                    startActivity(i);
+                                    showToastMessage("Successful !");
+
+
+                                    Intent i = new Intent(PlaceOrderActivity.this, Home.class);
+
+                                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                    startActivity(i);
+                                }
+                            })
+                            .show();
+
+
+
 
                 }else
                 {
@@ -500,6 +534,7 @@ public class PlaceOrderActivity extends AppCompatActivity implements View.OnClic
         });
 
     }
+
 
 
 

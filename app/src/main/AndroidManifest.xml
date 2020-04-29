@@ -448,6 +448,7 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
         </activity>
+        <activity android:name=".Checkout.mobile_pay.Mobile_pay" />
 
 
         <meta-data
