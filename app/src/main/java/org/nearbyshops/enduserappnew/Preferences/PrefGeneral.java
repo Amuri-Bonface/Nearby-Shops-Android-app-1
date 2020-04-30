@@ -36,7 +36,8 @@ public class PrefGeneral {
     public static final boolean MULTI_MARKET_MODE_ENABLED = MyApplication.getAppContext().getResources().getBoolean(
             R.bool.multi_market_enabled);
 
-    public static final String DEFAULT_SERVICE_URL = get_default_service_url();
+    public static final String DEFAULT_SERVICE_URL = "http://34.69.18.130:80";
+    // public static final String DEFAULT_SERVICE_URL =get_default_service_url();
 
 
 
